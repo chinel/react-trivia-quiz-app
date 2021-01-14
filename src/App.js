@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { CategorySelector, Question, Scoreboard } from "./components";
 
 export default function App() {
+  const [question, setQuestion] = useState(null);
   useEffect(() => {
     getQuestions();
   }, []);
@@ -11,7 +12,7 @@ export default function App() {
     const url = "https://opentdb.com/api.php?amount=1";
     fetch(url)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => setQuestion(data.results[0]))
       .catch((err) => console.error(err));
   }
 
@@ -28,7 +29,7 @@ export default function App() {
 
       {/* the question itself ----------------------- */}
       <div className="question-main">
-        <Question />
+        <Question question={question} />
       </div>
 
       {/* question footer ----------------------- */}
