@@ -3,6 +3,14 @@ import "./App.css";
 import { CategorySelector, Question, Scoreboard } from "./components";
 
 export default function App() {
+  function getQuestions() {
+    const url = "https://opentdb.com/api.php?amount=1";
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+  }
+
   return (
     <div className="app">
       {/* show the result modal ----------------------- */}
