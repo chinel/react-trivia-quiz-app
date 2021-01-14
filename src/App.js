@@ -28,9 +28,11 @@ export default function App() {
       </div>
 
       {/* the question itself ----------------------- */}
-      <div className="question-main">
-        <Question question={question} />
-      </div>
+      {question && (
+        <div className="question-main">
+          <Question question={question} />
+        </div>
+      )}
 
       {/* question footer ----------------------- */}
       <div className="question-footer">
