@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { CategorySelector, Question, Scoreboard } from "./components";
 
 export default function App() {
+  useEffect(() => {
+    getQuestions();
+  }, []);
+
   function getQuestions() {
     const url = "https://opentdb.com/api.php?amount=1";
     fetch(url)
