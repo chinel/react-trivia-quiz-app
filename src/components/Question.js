@@ -7,7 +7,7 @@ export default function Question({ question }) {
 
   return (
     <div className="question">
-      <h2>{question.question}</h2>
+      <h2 dangerouslySetInnerHTML={{ __html: question.question }} />
 
       {answers.map((answer, index) => (
         <button key={index}>{answer}</button>
