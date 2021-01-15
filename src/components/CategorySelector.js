@@ -7,9 +7,11 @@ export default function CategorySelector() {
       <p>Select Category</p>
       <select>
         {categories.map((category, index) => (
-          <option key={index} value={category.id}>
-            {category.name}
-          </option>
+          <option
+            key={index}
+            value={category.id}
+            dangerouslySetInnerHTML={{ __html: category.name }}
+          />
         ))}
       </select>
     </div>
