@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { CategorySelector, Question, Scoreboard } from "./components";
+import { CategorySelector, Loading, Question, Scoreboard } from "./components";
 
 export default function App() {
   const [question, setQuestion] = useState(null);
@@ -35,15 +35,14 @@ export default function App() {
       </div>
 
       {/* the question itself ----------------------- */}
-      {question && (
-        <div className="question-main">
-          <Question question={question} />
-        </div>
-      )}
+
+      <div className="question-main">
+        {question ? <Question question={question} /> : <Loading />}
+      </div>
 
       {/* question footer ----------------------- */}
       <div className="question-footer">
-        <button>Go to next question 👉</button>
+        <button onClick={getQuestions}>Go to next question 👉</button>
       </div>
     </div>
   );
