@@ -210,6 +210,11 @@ button:hover {
 }
 
 /**Loading component styles*/
+.lds-holder {
+  display: flex;
+  justify-content: center;
+}
+
 .lds-hourglass {
   display: inline-block;
   position: relative;
