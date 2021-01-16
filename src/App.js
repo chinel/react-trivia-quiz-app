@@ -4,17 +4,21 @@ import { CategorySelector, Question, Scoreboard } from "./components";
 
 export default function App() {
   const [question, setQuestion] = useState(null);
-  useEffect(() => {
-    getQuestions();
-  }, []);
+  const [selectedCategory, setSelectedCategory] = useState("any");
+  const getQuestions = React.useCallback(() => {
+    let url = "https://opentdb.com/api.php?amount=1";
 
-  function getQuestions() {
-    const url = "https://opentdb.com/api.php?amount=1";
+    if (selectedCategory !== "any") url += `&category=${selectedCategory}`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => setQuestion(data.results[0]))
       .catch((err) => console.error(err));
-  }
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    getQuestions();
+  }, [getQuestions, selectedCategory]);
 
   return (
     <div className="app">
@@ -23,7 +27,10 @@ export default function App() {
 
       {/* question header ----------------------- */}
       <div className="question-header">
-        <CategorySelector />
+        <CategorySelector
+          category={selectedCategory}
+          chooseCategory={setSelectedCategory}
+        />
         <Scoreboard />
       </div>
 
