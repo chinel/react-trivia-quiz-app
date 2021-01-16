@@ -4,12 +4,16 @@ import { CategorySelector, Question, Scoreboard } from "./components";
 
 export default function App() {
   const [question, setQuestion] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("any");
   useEffect(() => {
     getQuestions();
   }, []);
 
   function getQuestions() {
-    const url = "https://opentdb.com/api.php?amount=1";
+    let url = "https://opentdb.com/api.php?amount=1";
+
+    if (selectedCategory !== "any") url += `&category=${selectedCategory}`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => setQuestion(data.results[0]))
@@ -23,7 +27,10 @@ export default function App() {
 
       {/* question header ----------------------- */}
       <div className="question-header">
-        <CategorySelector />
+        <CategorySelector
+          category={selectedCategory}
+          chooseCategory={setSelectedCategory}
+        />
         <Scoreboard />
       </div>
 
