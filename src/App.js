@@ -35,15 +35,14 @@ export default function App() {
       </div>
 
       {/* the question itself ----------------------- */}
-      {question && (
-        <div className="question-main">
-          <Question question={question} />
-        </div>
-      )}
+
+      <div className="question-main">
+        {question && <Question question={question} />}
+      </div>
 
       {/* question footer ----------------------- */}
       <div className="question-footer">
-        <button>Go to next question 👉</button>
+        <button on>Go to next question 👉</button>
       </div>
     </div>
   );
