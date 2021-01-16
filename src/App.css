@@ -157,6 +157,7 @@ body {
   min-height: 350px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .question {
@@ -210,10 +211,6 @@ button:hover {
 }
 
 /**Loading component styles*/
-.lds-holder {
-  display: flex;
-  justify-content: center;
-}
 
 .lds-hourglass {
   display: inline-block;
