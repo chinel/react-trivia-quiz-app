@@ -36,11 +36,13 @@ export default function App() {
 
       {/* the question itself ----------------------- */}
 
-      <div className="question-main">{question && <Loading />}</div>
+      <div className="question-main">
+        {question ? <Question question={question} /> : <Loading />}
+      </div>
 
       {/* question footer ----------------------- */}
       <div className="question-footer">
-        <button on>Go to next question 👉</button>
+        <button onClick={getQuestions}>Go to next question 👉</button>
       </div>
     </div>
   );
