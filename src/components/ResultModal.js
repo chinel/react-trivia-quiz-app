@@ -23,7 +23,9 @@ export default function ResultModal({ isCorrect, question, getQuestions }) {
           <div className="correct-answer">
             <small>The correct answer was:</small>
             <br />
-            <strong>{question.correct_answer}</strong>
+            <strong
+              dangerouslySetInnerHTML={{ __html: question.correct_answer }}
+            />
           </div>
         )}
         <button onClick={getQuestions}>Go to next question 👉</button>
