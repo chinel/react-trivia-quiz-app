@@ -29,7 +29,7 @@ export default function App() {
   return (
     <div className="app">
       {/* show the result modal ----------------------- */}
-      {isCorrect !== null &&  <ResultModal isCorrect={isCorrect}/> 
+      {isCorrect !== null &&  <ResultModal isCorrect={isCorrect} question={question} getQuestions={getQuestions}/> 
 
       {/* question header ----------------------- */}
       <div className="question-header">

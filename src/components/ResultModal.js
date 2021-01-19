@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ResultModal({ isCorrect }) {
+export default function ResultModal({ isCorrect, question, getQuestions }) {
   return (
     <div className="result-modal">
       <div className="overlay" />
@@ -19,13 +19,14 @@ export default function ResultModal({ isCorrect }) {
           </h3>
         )}
 
-        <div className="correct-answer">
-          <small>The correct answer was:</small>
-          <br />
-          <strong>Answer here</strong>
-        </div>
-
-        <button>Go to next question 👉</button>
+        {isCorrect && (
+          <div className="correct-answer">
+            <small>The correct answer was:</small>
+            <br />
+            <strong>{question.correct_answer}</strong>
+          </div>
+        )}
+        <button onClick={getQuestions}>Go to next question 👉</button>
       </div>
     </div>
   );
