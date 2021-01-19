@@ -12,8 +12,6 @@ export default function App() {
   const [question, setQuestion] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("any");
   const [isCorrect, setIsCorrect] = useState(null);
-  const [correctScore, setCorrectScore] = useState(0);
-  const [wrongScore, setWrongScore] = useState(0);
   const getQuestions = React.useCallback(() => {
     setIsCorrect(null);
 

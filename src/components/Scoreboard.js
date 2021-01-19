@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function Scoreboard({ correct, wrong }) {
+export default function Scoreboard() {
+  const [correct, setCorrect] = useState(0);
+  const [wrong, setWrong] = useState(0);
   return (
     <div className="scoreboard">
       <div className="wrong">
@@ -8,7 +10,7 @@ export default function Scoreboard({ correct, wrong }) {
         <span>wrong</span>
       </div>
       <div className="correct">
-        <strong>{correct }</strong>
+        <strong>{correct}</strong>
         <span>correct</span>
       </div>
     </div>
