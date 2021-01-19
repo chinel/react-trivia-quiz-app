@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-export default function Scoreboard() {
+export default function Scoreboard({ correct, wrong }) {
   return (
     <div className="scoreboard">
       <div className="wrong">
-        <strong>0</strong>
+        <strong>{wrong}</strong>
         <span>wrong</span>
       </div>
       <div className="correct">
-        <strong>0</strong>
+        <strong>{correct }</strong>
         <span>correct</span>
       </div>
     </div>

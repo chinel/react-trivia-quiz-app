@@ -60,7 +60,7 @@ export default function App() {
           category={selectedCategory}
           chooseCategory={setSelectedCategory}
         />
-        <Scoreboard correctScore={correctScore} wrongScore={wrongScore} />
+        <Scoreboard correct={correctScore} wrong={wrongScore} />
       </div>
 
       {/* the question itself ----------------------- */}
