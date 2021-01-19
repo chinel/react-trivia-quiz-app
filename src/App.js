@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { CategorySelector, Loading, Question, Scoreboard } from "./components";
+import { CategorySelector, Loading, Question, ResultModal, Scoreboard } from "./components";
 
 export default function App() {
   const [question, setQuestion] = useState(null);
@@ -22,13 +22,14 @@ export default function App() {
   }, [getQuestions, selectedCategory]);
 
   function handleQuestionAnswered(answer) {
-    
+    const isAnswerCorrect = answer === question.correct_answer;
+    setIsCorrect(isAnswerCorrect);
   }
 
   return (
     <div className="app">
       {/* show the result modal ----------------------- */}
-      {/* <ResultModal /> */}
+      {isCorrect !== null &&  <ResultModal isCorrect={isCorrect}/> 
 
       {/* question header ----------------------- */}
       <div className="question-header">
