@@ -1,6 +1,6 @@
 # React Trivia Quiz
 
-### [Live Site](https://upbeat-jang-d6bc6e.netlify.app)
+### [Live Site](https://react-trivia-quiz.netlify.app)
 
 ![React Trivia Quiz](https://i.imgur.com/795wgVq.png)
 
