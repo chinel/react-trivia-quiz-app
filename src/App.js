@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import {
   CategorySelector,
@@ -7,36 +7,20 @@ import {
   ResultModal,
   Scoreboard,
 } from "./components";
+import useTrivia from "./useTrivia";
 
 export default function App() {
-  const [question, setQuestion] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("any");
+  const { question, getQuestions, category, setCategory } = useTrivia();
   const [isCorrect, setIsCorrect] = useState(null);
-  const getQuestions = React.useCallback(() => {
-    setIsCorrect(null);
-
-    let url = "https://opentdb.com/api.php?amount=1";
-
-    if (selectedCategory !== "any") url += `&category=${selectedCategory}`;
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setQuestion(data.results[0]);
-      })
-      .catch((err) => {
-        setQuestion(null);
-        console.error(err);
-      });
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    getQuestions();
-  }, [getQuestions, selectedCategory]);
 
   function handleQuestionAnswered(answer) {
     const isAnswerCorrect = answer === question.correct_answer;
     setIsCorrect(isAnswerCorrect);
+  }
+
+  function handleNextQuestion() {
+    setIsCorrect(null);
+    getQuestions();
   }
 
   return (
@@ -46,17 +30,14 @@ export default function App() {
         <ResultModal
           isCorrect={isCorrect}
           question={question}
-          getQuestions={getQuestions}
+          getQuestions={handleNextQuestion}
         />
       )}
 
       {/* question header ----------------------- */}
       <div className="question-header">
-        <CategorySelector
-          category={selectedCategory}
-          chooseCategory={setSelectedCategory}
-        />
-        <Scoreboard />
+        <CategorySelector category={category} chooseCategory={setCategory} />
+        <Scoreboard isCorrect={isCorrect} />
       </div>
 
       {/* the question itself ----------------------- */}
@@ -74,7 +55,7 @@ export default function App() {
 
       {/* question footer ----------------------- */}
       <div className="question-footer">
-        <button onClick={getQuestions}>Go to next question 👉</button>
+        <button onClick={handleNextQuestion}>Go to next question 👉</button>
       </div>
     </div>
   );

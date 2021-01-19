@@ -19,7 +19,7 @@ export default function ResultModal({ isCorrect, question, getQuestions }) {
           </h3>
         )}
 
-        {isCorrect && (
+        {!isCorrect && (
           <div className="correct-answer">
             <small>The correct answer was:</small>
             <br />
