@@ -1,11 +1,9 @@
-import { useState, useEffect, useCallback } from "react ";
+import { useState, useEffect, useCallback } from "react";
 
 export default function useTrivia() {
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState("any");
   const getQuestions = useCallback(() => {
-  
-
     let url = "https://opentdb.com/api.php?amount=1";
 
     if (category !== "any") url += `&category=${category}`;
