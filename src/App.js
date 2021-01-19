@@ -5,6 +5,7 @@ import { CategorySelector, Loading, Question, Scoreboard } from "./components";
 export default function App() {
   const [question, setQuestion] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("any");
+  const [isCorrect, setIsCorrect] = useState(null);
   const getQuestions = React.useCallback(() => {
     let url = "https://opentdb.com/api.php?amount=1";
 
@@ -19,6 +20,10 @@ export default function App() {
   useEffect(() => {
     getQuestions();
   }, [getQuestions, selectedCategory]);
+
+  function handleQuestionAnswered(answer) {
+    
+  }
 
   return (
     <div className="app">
@@ -37,7 +42,14 @@ export default function App() {
       {/* the question itself ----------------------- */}
 
       <div className="question-main">
-        {question ? <Question question={question} /> : <Loading />}
+        {question ? (
+          <Question
+            question={question}
+            answerQuestion={handleQuestionAnswered}
+          />
+        ) : (
+          <Loading />
+        )}
       </div>
 
       {/* question footer ----------------------- */}
