@@ -9,8 +9,7 @@ import {
 } from "./components";
 
 export default function App() {
-  const [question, setQuestion] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("any");
+  const { question, setQuestion, category, setCategory } = useTrivia();
   const [isCorrect, setIsCorrect] = useState(null);
   const getQuestions = React.useCallback(() => {
     setIsCorrect(null);
