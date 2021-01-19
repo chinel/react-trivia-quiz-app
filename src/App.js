@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import {
   CategorySelector,
@@ -7,14 +7,20 @@ import {
   ResultModal,
   Scoreboard,
 } from "./components";
+import useTrivia from "./useTrivia";
 
 export default function App() {
-  const { question, setQuestion, category, setCategory } = useTrivia();
+  const { question, getQuestions, category, setCategory } = useTrivia();
   const [isCorrect, setIsCorrect] = useState(null);
 
   function handleQuestionAnswered(answer) {
     const isAnswerCorrect = answer === question.correct_answer;
     setIsCorrect(isAnswerCorrect);
+  }
+
+  function handleNextQuestion() {
+    setIsCorrect(null);
+    getQuestions();
   }
 
   return (
@@ -24,16 +30,13 @@ export default function App() {
         <ResultModal
           isCorrect={isCorrect}
           question={question}
-          getQuestions={getQuestions}
+          getQuestions={handleNextQuestion}
         />
       )}
 
       {/* question header ----------------------- */}
       <div className="question-header">
-        <CategorySelector
-          category={selectedCategory}
-          chooseCategory={setSelectedCategory}
-        />
+        <CategorySelector category={category} chooseCategory={setCategory} />
         <Scoreboard isCorrect={isCorrect} />
       </div>
 
@@ -52,7 +55,7 @@ export default function App() {
 
       {/* question footer ----------------------- */}
       <div className="question-footer">
-        <button onClick={getQuestions}>Go to next question 👉</button>
+        <button onClick={handleNextQuestion}>Go to next question 👉</button>
       </div>
     </div>
   );

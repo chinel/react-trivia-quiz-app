@@ -3,12 +3,12 @@ import { useState, useEffect, useCallback } from "react ";
 export default function useTrivia() {
   const [question, setQuestion] = useState(null);
   const [category, setCategory] = useState("any");
-  const getQuestions = React.useCallback(() => {
-    setIsCorrect(null);
+  const getQuestions = useCallback(() => {
+  
 
     let url = "https://opentdb.com/api.php?amount=1";
 
-    if (selectedCategory !== "any") url += `&category=${selectedCategory}`;
+    if (category !== "any") url += `&category=${category}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -19,9 +19,11 @@ export default function useTrivia() {
         setQuestion(null);
         console.error(err);
       });
-  }, [selectedCategory]);
+  }, [category]);
 
   useEffect(() => {
     getQuestions();
-  }, [getQuestions, selectedCategory]);
+  }, [getQuestions, category]);
+
+  return { question, category, setCategory, getQuestions };
 }
