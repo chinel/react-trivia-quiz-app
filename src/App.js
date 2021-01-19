@@ -11,27 +11,6 @@ import {
 export default function App() {
   const { question, setQuestion, category, setCategory } = useTrivia();
   const [isCorrect, setIsCorrect] = useState(null);
-  const getQuestions = React.useCallback(() => {
-    setIsCorrect(null);
-
-    let url = "https://opentdb.com/api.php?amount=1";
-
-    if (selectedCategory !== "any") url += `&category=${selectedCategory}`;
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setQuestion(data.results[0]);
-      })
-      .catch((err) => {
-        setQuestion(null);
-        console.error(err);
-      });
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    getQuestions();
-  }, [getQuestions, selectedCategory]);
 
   function handleQuestionAnswered(answer) {
     const isAnswerCorrect = answer === question.correct_answer;
