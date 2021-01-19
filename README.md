@@ -2,7 +2,7 @@
 
 ### [Live Site](https://happy-bhabha-676a03.netlify.app)
 
-![React Trivia Quiz](https://i.imgur.com/2bIfY43.png)
+![React Trivia Quiz](https://i.imgur.com/795wgVq.png)
 
 ## Introduction
 
