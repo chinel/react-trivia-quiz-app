@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function Scoreboard() {
+export default function Scoreboard({ isCorrect }) {
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
+
+  useEffect(() => {
+    if (isCorrect === null) return;
+    if (isCorrect) setCorrect((score) => score + 1);
+    else setWrong((score) => score + 1);
+  }, [isCorrect]);
   return (
     <div className="scoreboard">
       <div className="wrong">
