@@ -7,6 +7,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("any");
   const [isCorrect, setIsCorrect] = useState(null);
   const getQuestions = React.useCallback(() => {
+    setIsCorrect(null);
     let url = "https://opentdb.com/api.php?amount=1";
 
     if (selectedCategory !== "any") url += `&category=${selectedCategory}`;
@@ -24,7 +25,7 @@ export default function App() {
   function handleQuestionAnswered(answer) {
     const isAnswerCorrect = answer === question.correct_answer;
     setIsCorrect(isAnswerCorrect);
-  }
+  } 
 
   return (
     <div className="app">
